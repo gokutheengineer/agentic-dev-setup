@@ -50,7 +50,7 @@ The mental model is a **captain sailing a ship with a crew of agents**:
 | 1 Ship | [WezTerm](docs/tools/wezterm.md) | GPU terminal emulator (Lua config, rose-pine) | ✅ |
 | 1 Ship | [tmux](docs/tools/tmux.md) | Multiplexer — panes, windows, persistent sessions | ✅ |
 | 1 Ship | [Neovim](docs/tools/nvim.md) | Editor — lazy.nvim + Telescope (`Space-f`/`Space-s`) | ✅ |
-| 2 Crew | [Agent harnesses](docs/tools/agents.md) | Claude Code / Codex / opencode / Pi (agent-agnostic) | ✅ |
+| 2 Crew | [Agent harnesses](docs/tools/agents.md) | Claude Code / Codex / opencode / [Pi](docs/tools/pi.md) (agent-agnostic) | ✅ |
 | 2 Crew | [Memory files](docs/tools/memory.md) | Global + project memory, `CLAUDE.md`↔`AGENTS.md` symlink | ✅ |
 | 2 Crew | [skills CLI](docs/tools/skills.md) | `npx skills` + skill-creator; progressive disclosure | ✅ |
 | 2 Crew | [OPINIONS.md](docs/tools/opinions.md) | My software taste (mirrors Kun); always-on + skill | ✅ |

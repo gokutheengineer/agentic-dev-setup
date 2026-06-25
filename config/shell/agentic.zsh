@@ -8,6 +8,11 @@ export PATH="$HOME/.local/bin:$PATH"
 # --- skills CLI: always-latest, no global install ---
 alias skills='npx -y skills@latest'
 
+# --- Pi coding agent: runs on node 22 via fnm (global node stays 18) ---
+if command -v fnm >/dev/null 2>&1; then
+  pi() { fnm exec --using=22 pi "$@"; }
+fi
+
 # --- firstmate: run your agent harness from inside the firstmate clone ---
 # Override the agent with FIRSTMATE_AGENT (claude | codex | opencode | pi).
 firstmate() {

@@ -12,7 +12,7 @@ one you use.
 | **Claude Code** | `claude` | Best out-of-box defaults, rich features; the practical choice on an Anthropic subscription. Slightly buggy, less customizable. | ✅ `2.1.191` |
 | **Codex CLI** | `codex` | Rust, feels smoother; open source (it can read its own source to debug). Fewer bells & whistles. | ✅ installed |
 | **opencode** | `opencode` | Smooth TUI, model-agnostic, good out-of-box set. Grab-and-go. | ✅ installed |
-| **Pi** | `pi` | Minimal & highly extensible; for tinkerers who want zero bloat. | ❌ not installed |
+| **Pi** | `pi` | Minimal & highly extensible; for tinkerers who want zero bloat. | ✅ via fnm/node22 ([pi.md](pi.md)) |
 
 > The video uses Claude Code for the demos because most people know it, but every
 > technique is meant to apply to any of them.
@@ -28,10 +28,10 @@ same global and project memory:
 Skills installed via the [skills CLI](skills.md) also fan out to all detected agents
 at once (it reported "Claude Code, Cline, Codex, Continue, Cursor +3 more").
 
-## Installing the others (optional)
+## Installing the others
 
 ```bash
-# Pi (if you want to try it) — see its docs for the current install command.
+./setup.sh pi      # installs Pi under fnm/node-22 (see docs/tools/pi.md)
 # Codex / opencode were already present here via Homebrew/npm.
 ```
 

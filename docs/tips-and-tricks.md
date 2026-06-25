@@ -97,6 +97,13 @@ preferences by running `./setup.sh memory`.
 **How:** Keep ~20-30 lines of durable prefs; push conditional how-tos into skills and
 project-specific knowledge into the project memory file.
 
+### [pi] Run a node-22 tool without disturbing global node 18 (fnm exec)
+**What:** Pi needs node >=22.19.0; the machine's default is 18 (used by ~30 projects).
+**Why:** `brew install node` would replace global node and risk breaking those repos.
+**How:** `brew install fnm` → `fnm install 22` → install Pi under it → wrap the command:
+`pi() { fnm exec --using=22 pi "$@"; }`. `fnm exec` needs no shell integration, so the
+launcher is self-contained and the default `node` stays v18.
+
 ### [gnhf] node 18 vs the >=20 engine requirement — don't nuke global node
 **What:** gnhf declares `engines.node >=20`; this machine is on 18 (used by ~30 other
 projects). gnhf still runs on 18 in practice (verified `gnhf --help`).

@@ -14,3 +14,4 @@ brew "gh"
 brew "node"      # for npx-based tools (skills CLI, etc.)
 brew "ripgrep"   # nvim/telescope + general search
 brew "fd"        # fast find, used by many nvim setups
+brew "fnm"       # node version manager (runs Pi on node 22 without touching global node 18)
