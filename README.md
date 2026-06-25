@@ -35,23 +35,36 @@ cd agentic-dev-setup
 
 ## The toolchain
 
-This setup follows an agentic-dev YouTube tutorial. Tools, in install order:
+Replicates **Kun's (kunchenguid) agent-engineering workflow** ([video transcript](videoscript.txt)).
+The mental model is a **captain sailing a ship with a crew of agents**:
 
-| Tool | Purpose | Status |
-|------|---------|--------|
-| [WezTerm](docs/tools/wezterm.md) | GPU terminal emulator | ✅ |
-| [tmux](docs/tools/tmux.md) | Terminal multiplexer (persistent sessions) | ✅ |
-| [Neovim](docs/tools/nvim.md) | Modal editor | ✅ |
-| [skills CLI](docs/tools/skills.md) | `npx skills` — Vercel Labs agent skills | ✅ |
-| [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation | ✅ scripted (arm64 only) |
-| [AXI](docs/tools/axi.md) | agentic tool (axi.md) | ⏳ |
-| [lavish](docs/tools/kunchenguid-suite.md) | kunchenguid suite | ⏳ |
-| [no-mistakes](docs/tools/kunchenguid-suite.md) | kunchenguid suite | ⏳ |
-| [gnhf](docs/tools/kunchenguid-suite.md) | kunchenguid suite | ⏳ |
-| [treehouse](docs/tools/kunchenguid-suite.md) | kunchenguid suite | ⏳ |
-| [firstmate](docs/tools/kunchenguid-suite.md) | kunchenguid suite | ⏳ |
+1. **Assemble the ship** — terminal, multiplexer, editor.
+2. **Recruit & onboard the crew** — agents + memory files + skills.
+3. **Work with a single crewmate** — voice input, plan with lavish, validate with no-mistakes.
+4. **Work with many crewmates** — long runs (gnhf) + parallel worktrees (treehouse).
+5. **Recruit a first mate** — one agent that orchestrates the whole crew.
+6. **Captain's mindset** — your bottleneck becomes *what* to build, not *how*.
+
+| Stage | Tool | Purpose | Status |
+|-------|------|---------|--------|
+| 1 Ship | [WezTerm](docs/tools/wezterm.md) | GPU terminal emulator (Lua config, rose-pine) | ✅ |
+| 1 Ship | [tmux](docs/tools/tmux.md) | Multiplexer — panes, windows, persistent sessions | ✅ |
+| 1 Ship | [Neovim](docs/tools/nvim.md) | Editor — lazy.nvim + Telescope (`Space-f`/`Space-s`) | ✅ |
+| 2 Crew | [Agent harnesses](docs/tools/agents.md) | Claude Code / Codex / opencode / Pi (agent-agnostic) | ✅ |
+| 2 Crew | [Memory files](docs/tools/memory.md) | Global + project memory, `CLAUDE.md`↔`AGENTS.md` symlink | ✅ |
+| 2 Crew | [skills CLI](docs/tools/skills.md) | `npx skills` + skill-creator; progressive disclosure | ✅ |
+| 3 Single | [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation | ✅ scripted (arm64 only) |
+| 3 Single | [AXI](docs/tools/axi.md) | Agent-ergonomic CLI design standards | ✅ |
+| 3 Single | [lavish](docs/tools/lavish.md) | Interactive HTML-artifact planning | ✅ |
+| 3 Single | [no-mistakes](docs/tools/no-mistakes.md) | Validate first-pass code → clean PR | ✅ |
+| 4 Parallel | [gnhf](docs/tools/gnhf.md) | "Good night, have fun" — long-running agent loop | ✅ |
+| 4 Parallel | [treehouse](docs/tools/treehouse.md) | Reusable git-worktree pool | ✅ |
+| 5 First mate | [firstmate](docs/tools/firstmate.md) | One agent that orchestrates the crew | ✅ |
 
 Status legend: ⏳ planned · 🔧 in progress · ✅ done
+
+See [`docs/00-overview.md`](docs/00-overview.md) for how it all fits together, and
+[`docs/tips-and-tricks.md`](docs/tips-and-tricks.md) for the gotchas we hit.
 
 ## Conventions
 
