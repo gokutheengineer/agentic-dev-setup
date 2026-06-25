@@ -18,4 +18,12 @@ install_skills() {
 
   # Convenience `skills` alias lives in our shell entrypoint; wire it into ~/.zshrc.
   ensure_shell_sourced
+
+  # skill-creator (by Anthropic): teaches the agent to author/optimize skills.
+  # Plain doc skill -> installs globally fine. (Its optional PromptScript add-on
+  # only installs per-project; the "Failed to install 1" line for it is expected.)
+  info "Installing skill-creator globally (anthropics/skills)..."
+  CI=1 npx -y skills@latest add anthropics/skills --skill skill-creator -g -y 2>&1 \
+    | tr -d '\r' | grep -viE 'Cloning repository|^\s*$' | tail -4 || true
+  ok "skill-creator installed globally. Verify: skills list -g"
 }

@@ -36,8 +36,43 @@ Nothing to globally install — it runs via `npx`. We add a convenience alias:
 ### Scope: project vs global
 
 - **Project** (default in a repo): skill lives with that project.
-- **Global** (`-g`): available to every project on this machine. Good for the
-  always-on tools like AXI.
+- **Global** (`-g`): available to every project on this machine. Good for always-on
+  doc skills like `skill-creator` and `axi` (the guidance part).
+
+### skill-creator (installed globally by `./setup.sh skills`)
+
+Anthropic's skill that teaches the agent to *create, edit, and eval* skills. With it
+installed, you can ask any agent "extract these instructions into a project skill" and
+it knows how. This is how you move conditional instructions out of memory files (see
+[memory.md](memory.md)) to save tokens via **progressive disclosure** — only a skill's
+one-line description loads up front; the body loads only when the skill is actually used.
+
+```bash
+skills add anthropics/skills --skill skill-creator -g -y   # done by setup.sh
+skills list -g                                             # verify
+```
+
+### Plain doc skills vs PromptScript skills
+
+- **Doc skills** (markdown only, e.g. `skill-creator`, `axi` guidance) → install
+  **globally** fine.
+- **PromptScript skills** (have an executable component, e.g. AXI's tooling, lavish)
+  → **per-project only**. Installing them with `-g` prints
+  `PromptScript does not support global skill installation` for that part — expected,
+  not a failure of the doc skill.
+
+## ⚠️ Security: don't install random skills (Kun's warning)
+
+Skills run **with full agent permissions** — they can instruct your agent to run
+anything on your machine (exfiltrate API keys, bank creds, etc.). And popularity ≠
+quality: Kun benchmarked a 177k-star skill repo and found it used **5% more tokens
+while making results worse**.
+
+Rule of thumb:
+- **Never** install a skill that *claims* to magically improve your agent without
+  published, rigorous evidence.
+- GitHub stars measure popularity, not whether it helps.
+- Prefer first-party (Anthropic) or skills you've read and understand.
 
 ## Gotchas
 

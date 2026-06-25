@@ -13,6 +13,19 @@ isn't in any single tool's README. Newest at the top.
 error. The guard makes `./setup.sh` succeed everywhere and self-heal on a new laptop.
 **How:** `[ "$(uname -m)" != "arm64" ] && return 0` early-out with a clear message.
 
+### [skills] Popular ≠ good; skills run with full agent permissions
+**What:** Kun's hard rule: don't install internet skills without rigorous evidence.
+**Why:** A skill can run anything on your machine (key/cred exfiltration), and a
+177k-star skill he benchmarked used 5% more tokens while making results *worse*.
+**How:** Prefer first-party (Anthropic) skills or ones you've read; ignore star counts.
+
+### [skills] "PromptScript does not support global" is expected, not an error
+**What:** `skills add <x> -g` prints this for skills with an executable component.
+**Why:** Only the markdown/doc part installs globally; PromptScript parts are per-project.
+**How:** Treat it as informational. The doc skill (skill-creator, axi guidance) still
+installs globally — verify with `skills list -g`. Install PromptScript parts inside the
+project that needs them.
+
 ### [skills] AXI & lavish install *through* the skills CLI
 **What:** The agentic tools aren't standalone apps — they're agent skills.
 **Why:** `npx skills add kunchenguid/axi` etc. registers them with Claude Code & co.
