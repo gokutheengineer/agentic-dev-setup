@@ -97,10 +97,12 @@ preferences by running `./setup.sh memory`.
 **How:** Keep ~20-30 lines of durable prefs; push conditional how-tos into skills and
 project-specific knowledge into the project memory file.
 
-### [meta] Keep node current for npx-based agentic tools
-**What:** Some `npx` tools assume a recent Node LTS. The machine started on Node 18.
-**Why:** Newer CLIs (skills, etc.) may use modern syntax / fetch APIs.
-**How:** `brew install node` gives a current major; verify with `node --version`.
+### [gnhf] node 18 vs the >=20 engine requirement — don't nuke global node
+**What:** gnhf declares `engines.node >=20`; this machine is on 18 (used by ~30 other
+projects). gnhf still runs on 18 in practice (verified `gnhf --help`).
+**Why:** `brew install node` would replace the global node and could break those repos.
+**How:** If a node-20 tool misbehaves, install `fnm` and `fnm use 20` per-shell instead
+of upgrading the system node. Leave the global node alone.
 
 ### [meta] Symlink configs, don't copy them
 **What:** `setup.sh` symlinks files from `config/` into `~/.config` etc.
