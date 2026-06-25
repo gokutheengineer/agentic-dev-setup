@@ -75,6 +75,12 @@ ensure_line() {
 # ensure_shell_sourced — make ~/.zshrc source our single agentic shell entrypoint
 ensure_shell_sourced() {
   link "$REPO_ROOT/config/shell/agentic.zsh" "$HOME/.config/agentic-dev-setup.zsh"
+  # On a Nix machine, home-manager owns ~/.zshrc (a read-only symlink into /nix/store)
+  # and sources our entrypoint via programs.zsh.initExtra — don't append to it.
+  if [ -L "$HOME/.zshrc" ] && readlink "$HOME/.zshrc" | grep -q '/nix/store/'; then
+    ok ".zshrc is home-manager managed; entrypoint sourced via Nix (skipping append)"
+    return
+  fi
   ensure_line '[ -f ~/.config/agentic-dev-setup.zsh ] && source ~/.config/agentic-dev-setup.zsh' "$HOME/.zshrc"
 }
 

@@ -17,12 +17,28 @@ no-mistakes, treehouse, gnhf, firstmate, AXI) this setup installs and configures
   are guarded automatically).
 - Xcode Command Line Tools + [Homebrew](https://brew.sh) (the script checks/installs).
 
+## Two layers
+
+The repo has a **declarative base** and an **imperative agentic layer** — use either or
+both:
+
+- **Nix base** ([`nix/`](nix/README.md)) — optional but recommended for a fresh Mac.
+  `nix-darwin` + `home-manager` reproducibly set macOS defaults, base CLI packages,
+  fonts, global git, and shell. Multi-arch: `#intel` (x86_64) and `#apple` (aarch64).
+- **Agentic layer** (`setup.sh`) — the bespoke AI toolchain (agents, skills, memory,
+  lavish, no-mistakes, treehouse, gnhf, firstmate, Pi) plus dotfile symlinks.
+
+A fresh Mac runs both via [`setup/mac.sh`](setup/mac.sh): Nix base first, then the
+agentic layer. Prefer pure bash? Skip Nix and just run `./setup.sh`.
+
 ## What's in here
 
 | Path | What it is |
 |------|------------|
-| `setup.sh` | The one command. Idempotent installer — safe to run repeatedly. |
-| `Brewfile` | Homebrew packages & casks in one place (`brew bundle`). |
+| `setup.sh` | The agentic-layer installer. Idempotent — safe to run repeatedly. |
+| `nix/` | Declarative macOS base (nix-darwin + home-manager). See [`nix/README.md`](nix/README.md). |
+| `setup/mac.sh` | Fresh-Mac bootstrap: installs Nix, applies the base, runs the agentic layer. |
+| `Brewfile` | Homebrew packages & casks for the bash-only path (`brew bundle`). |
 | `scripts/` | Per-tool install/configure steps, sourced by `setup.sh`. |
 | `config/` | Dotfiles for each tool (symlinked into place by the installer). |
 | `docs/` | Per-tool guides, a [tips & tricks](docs/tips-and-tricks.md) log, and [troubleshooting](docs/troubleshooting.md). |

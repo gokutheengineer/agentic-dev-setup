@@ -2,9 +2,11 @@
 # Neovim — modal editor. Sourced by setup.sh.
 
 install_nvim() {
-  brew_install neovim
+  # Skip installs for anything Nix already provides (commands, not brew names).
+  have nvim || brew_install neovim
   # Helpers most nvim setups expect (search, file-find)
-  brew_install ripgrep fd
+  have rg || brew_install ripgrep
+  have fd || brew_install fd
   link "$REPO_ROOT/config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
   if have nvim; then
     info "Bootstrapping lazy.nvim + plugins (first run downloads them)..."
