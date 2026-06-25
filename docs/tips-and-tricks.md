@@ -7,6 +7,12 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
+### [opensuperwhisper] Arch-guard installers instead of failing
+**What:** `scripts/opensuperwhisper.sh` checks `uname -m` and only installs on arm64.
+**Why:** OpenSuperWhisper is Apple-Silicon-only; on this Intel Mac a hard install would
+error. The guard makes `./setup.sh` succeed everywhere and self-heal on a new laptop.
+**How:** `[ "$(uname -m)" != "arm64" ] && return 0` early-out with a clear message.
+
 ### [skills] AXI & lavish install *through* the skills CLI
 **What:** The agentic tools aren't standalone apps — they're agent skills.
 **Why:** `npx skills add kunchenguid/axi` etc. registers them with Claude Code & co.

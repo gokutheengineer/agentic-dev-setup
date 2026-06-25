@@ -43,7 +43,7 @@ This setup follows an agentic-dev YouTube tutorial. Tools, in install order:
 | [tmux](docs/tools/tmux.md) | Terminal multiplexer (persistent sessions) | ✅ |
 | [Neovim](docs/tools/nvim.md) | Modal editor | ✅ |
 | [skills CLI](docs/tools/skills.md) | `npx skills` — Vercel Labs agent skills | ✅ |
-| [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation | ⏳ |
+| [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation | ✅ scripted (arm64 only) |
 | [AXI](docs/tools/axi.md) | agentic tool (axi.md) | ⏳ |
 | [lavish](docs/tools/kunchenguid-suite.md) | kunchenguid suite | ⏳ |
 | [no-mistakes](docs/tools/kunchenguid-suite.md) | kunchenguid suite | ⏳ |
