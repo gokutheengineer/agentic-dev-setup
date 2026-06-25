@@ -9,11 +9,11 @@ description: The user's durable opinions and taste about software, agents, AI to
 > tools, product, and craft — the principles that should guide judgment calls and
 > recommendations on my behalf.
 >
-> **Provenance (important).** These opinions **mirror Kun Chen (kunchenguid)**. I have
-> deliberately adopted his taste as my own baseline. New entries are distilled from
-> *his* writing (Substack/posts) by `scripts/sync-opinions.sh`, not from my own activity.
-> Where I consciously diverge, those overrides live in the **"My divergences"** section
-> at the bottom and take precedence over everything above.
+> **Provenance.** These opinions started as a mirror of Kun Chen's (kunchenguid)
+> publicly stated taste, which I have **deliberately adopted as my own baseline**. This is
+> a hand-maintained snapshot — I edit it directly as my views sharpen. Where I diverge,
+> those overrides live in the **"My divergences"** section at the bottom and take
+> precedence over everything above.
 
 ## Agents & coding
 - Judge agents by **useful work on real codebases**, not demos or screenshots.

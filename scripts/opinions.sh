@@ -13,5 +13,5 @@ install_opinions() {
   link "$skill" "$HOME/.agents/skills/opinions"
 
   ok "OPINIONS skill linked (live). Core stances are also in global memory."
-  info "Update it from Kun's latest writing with: ./scripts/sync-opinions.sh"
+  info "Edit config/skills/opinions/SKILL.md to refine your stances over time."
 }

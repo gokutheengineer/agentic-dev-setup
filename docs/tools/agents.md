@@ -7,15 +7,14 @@ one you use.
 
 ## The four he uses
 
-| Harness | Command | Notes | On this machine |
-|---------|---------|-------|-----------------|
-| **Claude Code** | `claude` | Best out-of-box defaults, rich features; the practical choice on an Anthropic subscription. Slightly buggy, less customizable. | ✅ `2.1.191` |
-| **Codex CLI** | `codex` | Rust, feels smoother; open source (it can read its own source to debug). Fewer bells & whistles. | ✅ installed |
-| **opencode** | `opencode` | Smooth TUI, model-agnostic, good out-of-box set. Grab-and-go. | ✅ installed |
-| **Pi** | `pi` | Minimal & highly extensible; for tinkerers who want zero bloat. | ✅ via fnm/node22 ([pi.md](pi.md)) |
+| Harness | Command | Notes | Install |
+|---------|---------|-------|---------|
+| **Claude Code** | `claude` | Best out-of-box defaults, rich features; the practical choice on an Anthropic subscription. Slightly buggy, less customizable. | `brew install claude` (or official installer) |
+| **Codex CLI** | `codex` | Rust, feels smoother; open source (it can read its own source to debug). Fewer bells & whistles. | `brew install codex` |
+| **opencode** | `opencode` | Smooth TUI, model-agnostic, good out-of-box set. Grab-and-go. | `brew install opencode` |
+| **Pi** | `pi` | Minimal & highly extensible; for tinkerers who want zero bloat. Needs node ≥22. | `./setup.sh pi` ([pi.md](pi.md)) |
 
-> The video uses Claude Code for the demos because most people know it, but every
-> technique is meant to apply to any of them.
+> Pick whichever you like — every technique in this setup is agent-agnostic by design.
 
 ## How they share config
 

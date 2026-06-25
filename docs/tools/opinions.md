@@ -1,16 +1,20 @@
-# OPINIONS.md — mirroring Kun
+# OPINIONS.md
 
-**What it is:** A living map of my durable software/product/engineering opinions, so
-agents act with *my taste*. Inspired by Kun's
-[OPINIONS.md post](https://blog.kunchenguid.com/p/everyone-should-have-an-opinionsmd) —
-with one deliberate inversion.
+**What it is:** A living map of durable software/product/engineering opinions, so agents
+act with a consistent *taste*. Inspired by Kun's
+[OPINIONS.md post](https://blog.kunchenguid.com/p/everyone-should-have-an-opinionsmd).
 
-## The twist: mirror Kun, don't mirror myself
+## The idea
 
-Kun's cron distills *his own* posts into *his* opinions. Mine does the opposite:
-**I adopt Kun's opinions as my baseline**, and the sync pulls updates from **his**
-writing — so as his views evolve, mine track them. I only diverge where I consciously
-decide to (recorded in the "My divergences" section, which overrides everything else).
+Agents make better recommendations when they know your stances — how you weigh
+tradeoffs, what you're skeptical of, what "good" looks like. Capturing those durable
+beliefs in one file (and feeding it to your agents) makes their judgment calls align
+with yours instead of defaulting to generic averages.
+
+This repo seeds the file with a coherent, opinionated baseline (adapted from Kun's
+publicly stated views) that you then **edit directly** to make your own. A
+`## My divergences` section at the bottom holds explicit overrides and takes precedence
+over everything above it.
 
 ## How it's wired
 
@@ -26,30 +30,21 @@ decide to (recorded in the "My divergences" section, which overrides everything 
 ./setup.sh opinions      # links the skill (live symlink) into agent skill dirs
 ```
 
-This honors both how Kun *deploys* it (in agent memory) and what he *believes*
-(progressive disclosure / keep global memory tiny).
+This honors both how the file is *deployed* (in agent memory) and the
+progressive-disclosure principle (keep global memory tiny, put depth in skills).
 
-## Updating from Kun (manual)
+## Maintaining it
 
-```bash
-./scripts/sync-opinions.sh
-```
+It's a **hand-maintained markdown file** — edit `config/skills/opinions/SKILL.md`
+directly whenever your views sharpen. Because the skill is a **live symlink**, every
+agent (Claude / Codex / Cline / Cursor / opencode) sees edits immediately, no reinstall.
 
-Calls Claude Code headless to fetch Kun's latest Substack/writing, extract durable
-opinions (excluding jokes/code/recipes), reorganize OPINIONS.md in first person, and
-print a **DRIFT REPORT** when a new stance contradicts an old one. It leaves the change
-**uncommitted** so you review the diff first. The **"My divergences"** section is never
-touched by the sync.
-
-## My divergences
-
-Where I disagree with Kun, it's recorded under `## My divergences from Kun` at the
-bottom of the skill and **overrides** the mirrored stance. Populate it by answering the
-divergence questions (Claude can re-ask anytime: *"quiz me on where I differ from Kun"*).
+To record a disagreement, add it under `## My divergences` — it overrides the matching
+stance above.
 
 ## Gotchas
 
-- **It's a live symlink** — `sync-opinions.sh` edits the repo file and every agent sees
-  it immediately; no re-install needed.
-- Keep the always-on summary short; the depth lives in the skill (token discipline).
-- Re-running the sync **reorganizes** rather than appends — it won't grow unbounded.
+- **Live symlink:** editing the repo file updates every agent instantly.
+- **Keep the always-on summary short**; the depth lives in the skill (token discipline).
+- Treat it as a *map of beliefs*, not a changelog — reorganize as it grows rather than
+  appending endlessly.

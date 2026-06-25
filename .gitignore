@@ -1,6 +1,9 @@
 # OS
 .DS_Store
 
+# Tutorial transcript — kept locally for reference, not redistributed
+videoscript.txt
+
 # Secrets / local-only — NEVER commit these
 .env
 .env.*

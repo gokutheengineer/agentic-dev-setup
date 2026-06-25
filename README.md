@@ -1,41 +1,52 @@
 # agentic-dev-setup
 
-My reproducible **agentic development environment** — one repo to bootstrap a new
-laptop (or recover the current one) with every terminal, editor, and AI tool I use,
-plus the configs and the hard-won tips that make them work together.
+A reproducible **agentic development environment**: one repo that bootstraps a machine
+with a terminal-centric toolchain for working with AI coding agents — terminal, editor,
+agent harnesses, memory, skills, and the orchestration tools around them — plus the
+configs and tips that make them work together.
 
-> Goal: clone this repo on a fresh machine, run `./setup.sh`, and be productive in minutes.
+It follows the **agent-engineering workflow** popularized by Kun
+([kunchenguid](https://github.com/kunchenguid)), whose open-source tools (lavish,
+no-mistakes, treehouse, gnhf, firstmate, AXI) this setup installs and configures.
+
+> Goal: clone on a fresh machine, run `./setup.sh`, and have the whole toolchain ready.
+
+## Requirements
+
+- **macOS** (the installer uses Homebrew; Apple Silicon or Intel — arch-specific tools
+  are guarded automatically).
+- Xcode Command Line Tools + [Homebrew](https://brew.sh) (the script checks/installs).
 
 ## What's in here
 
 | Path | What it is |
 |------|------------|
-| `setup.sh` | The one command. Idempotent installer — run it as many times as you like. |
-| `Brewfile` | All Homebrew packages & casks in one place (`brew bundle`). |
+| `setup.sh` | The one command. Idempotent installer — safe to run repeatedly. |
+| `Brewfile` | Homebrew packages & casks in one place (`brew bundle`). |
 | `scripts/` | Per-tool install/configure steps, sourced by `setup.sh`. |
 | `config/` | Dotfiles for each tool (symlinked into place by the installer). |
-| `docs/` | Per-tool guides, a running [tips & tricks](docs/tips-and-tricks.md) log, and [troubleshooting](docs/troubleshooting.md). |
+| `docs/` | Per-tool guides, a [tips & tricks](docs/tips-and-tricks.md) log, and [troubleshooting](docs/troubleshooting.md). |
 
-## Quick start (fresh machine)
+## Quick start
 
 ```bash
-# 1. Prerequisites: Xcode CLT + Homebrew (setup.sh will check/install)
+# 1. Prerequisites (the installer also checks these)
 xcode-select --install
 
-# 2. Clone
+# 2. Clone (fork it first if you want to version your own configs)
 git clone git@github.com:gokutheengineer/agentic-dev-setup.git
 cd agentic-dev-setup
 
-# 3. Bootstrap everything
+# 3. Install & configure everything (idempotent)
 ./setup.sh
 
-# ...or install a single tool
+# ...or just one tool
 ./setup.sh wezterm
+./setup.sh --list      # see all available tools
 ```
 
 ## The toolchain
 
-Replicates **Kun's (kunchenguid) agent-engineering workflow** ([video transcript](videoscript.txt)).
 The mental model is a **captain sailing a ship with a crew of agents**:
 
 1. **Assemble the ship** — terminal, multiplexer, editor.
@@ -43,32 +54,33 @@ The mental model is a **captain sailing a ship with a crew of agents**:
 3. **Work with a single crewmate** — voice input, plan with lavish, validate with no-mistakes.
 4. **Work with many crewmates** — long runs (gnhf) + parallel worktrees (treehouse).
 5. **Recruit a first mate** — one agent that orchestrates the whole crew.
-6. **Captain's mindset** — your bottleneck becomes *what* to build, not *how*.
+6. **Captain's mindset** — the bottleneck becomes *what* to build, not *how*.
 
-| Stage | Tool | Purpose | Status |
-|-------|------|---------|--------|
-| 1 Ship | [WezTerm](docs/tools/wezterm.md) | GPU terminal emulator (Lua config, rose-pine) | ✅ |
-| 1 Ship | [tmux](docs/tools/tmux.md) | Multiplexer — panes, windows, persistent sessions | ✅ |
-| 1 Ship | [Neovim](docs/tools/nvim.md) | Editor — lazy.nvim + Telescope (`Space-f`/`Space-s`) | ✅ |
-| 2 Crew | [Agent harnesses](docs/tools/agents.md) | Claude Code / Codex / opencode / [Pi](docs/tools/pi.md) (agent-agnostic) | ✅ |
-| 2 Crew | [Memory files](docs/tools/memory.md) | Global + project memory, `CLAUDE.md`↔`AGENTS.md` symlink | ✅ |
-| 2 Crew | [skills CLI](docs/tools/skills.md) | `npx skills` + skill-creator; progressive disclosure | ✅ |
-| 2 Crew | [OPINIONS.md](docs/tools/opinions.md) | My software taste (mirrors Kun); always-on + skill | ✅ |
-| 3 Single | [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation | ✅ scripted (arm64 only) |
-| 3 Single | [AXI](docs/tools/axi.md) | Agent-ergonomic CLI design standards | ✅ |
-| 3 Single | [lavish](docs/tools/lavish.md) | Interactive HTML-artifact planning | ✅ |
-| 3 Single | [no-mistakes](docs/tools/no-mistakes.md) | Validate first-pass code → clean PR | ✅ |
-| 4 Parallel | [gnhf](docs/tools/gnhf.md) | "Good night, have fun" — long-running agent loop | ✅ |
-| 4 Parallel | [treehouse](docs/tools/treehouse.md) | Reusable git-worktree pool | ✅ |
-| 5 First mate | [firstmate](docs/tools/firstmate.md) | One agent that orchestrates the crew | ✅ |
-
-Status legend: ⏳ planned · 🔧 in progress · ✅ done
+| Stage | Tool | What it does |
+|-------|------|--------------|
+| 1 Ship | [WezTerm](docs/tools/wezterm.md) | GPU terminal emulator (Lua config, rose-pine) |
+| 1 Ship | [tmux](docs/tools/tmux.md) | Multiplexer — panes, windows, persistent sessions |
+| 1 Ship | [Neovim](docs/tools/nvim.md) | Editor — lazy.nvim + Telescope (`Space-f` / `Space-s`) |
+| 2 Crew | [Agent harnesses](docs/tools/agents.md) | Claude Code / Codex / opencode / [Pi](docs/tools/pi.md), agent-agnostic |
+| 2 Crew | [Memory files](docs/tools/memory.md) | Global + project memory, `CLAUDE.md`↔`AGENTS.md` symlink |
+| 2 Crew | [skills CLI](docs/tools/skills.md) | `npx skills` + skill-creator; progressive disclosure |
+| 2 Crew | [OPINIONS.md](docs/tools/opinions.md) | Durable opinions fed to agents so they match your taste |
+| 3 Single | [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation (Apple Silicon only) |
+| 3 Single | [AXI](docs/tools/axi.md) | Agent-ergonomic CLI design standards |
+| 3 Single | [lavish](docs/tools/lavish.md) | Interactive HTML-artifact planning |
+| 3 Single | [no-mistakes](docs/tools/no-mistakes.md) | Validate first-pass code → clean PR |
+| 4 Parallel | [gnhf](docs/tools/gnhf.md) | "Good night, have fun" — long-running agent loop |
+| 4 Parallel | [treehouse](docs/tools/treehouse.md) | Reusable git-worktree pool |
+| 5 First mate | [firstmate](docs/tools/firstmate.md) | One agent that orchestrates the crew |
 
 See [`docs/00-overview.md`](docs/00-overview.md) for how it all fits together, and
-[`docs/tips-and-tricks.md`](docs/tips-and-tricks.md) for the gotchas we hit.
+[`docs/tips-and-tricks.md`](docs/tips-and-tricks.md) for non-obvious gotchas.
 
 ## Conventions
 
-- **Idempotent**: every step checks "is it already installed/configured?" before acting. Safe to re-run.
-- **No secrets in git**: see `.gitignore`. API keys live in `~/.config/<tool>` or a local `.env`, never committed.
-- **Configs are symlinked**: edits in `config/` reflect live; commit them to version your dotfiles.
+- **Idempotent**: every step checks "is it already installed/configured?" before acting.
+- **No secrets in git**: see `.gitignore`. API keys live in `~/.config/<tool>` or a local
+  `.env`, never committed.
+- **Configs are symlinked**: edits in `config/` reflect live; commit them to version your
+  dotfiles.
+- **Cross-agent**: memory and skills are kept portable so the agent/harness is swappable.
