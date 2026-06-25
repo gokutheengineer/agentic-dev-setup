@@ -40,7 +40,7 @@ This setup follows an agentic-dev YouTube tutorial. Tools, in install order:
 | Tool | Purpose | Status |
 |------|---------|--------|
 | [WezTerm](docs/tools/wezterm.md) | GPU terminal emulator | ✅ |
-| [tmux](docs/tools/tmux.md) | Terminal multiplexer (persistent sessions) | ⏳ |
+| [tmux](docs/tools/tmux.md) | Terminal multiplexer (persistent sessions) | ✅ |
 | [Neovim](docs/tools/nvim.md) | Modal editor | ⏳ |
 | [skills CLI](docs/tools/skills.md) | `npx skills` — Vercel Labs agent skills | ⏳ |
 | [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation | ⏳ |

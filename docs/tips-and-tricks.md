@@ -7,6 +7,18 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
+### [tmux] Run agents inside tmux so they survive disconnects
+**What:** Start long agent runs in a tmux session, then `prefix d` to detach.
+**Why:** Closing the terminal (or losing SSH) won't kill the agent — reattach later
+with `tmux attach`. This is the single biggest reason tmux is in this stack.
+**How:** `tmux new -s work` → run agent → `Ctrl-a d` → later `tmux attach -t work`.
+
+### [tmux] Validate a tmux.conf without breaking your session
+**What:** Test a config edit safely.
+**Why:** A bad line can wedge your prefix key.
+**How:** `tmux -f path/to/tmux.conf new-session -d -s _t && tmux kill-session -t _t`
+— if it errors, the config is bad; your real session is untouched.
+
 ### [wezterm] JetBrains Mono is bundled — no font install needed
 **What:** The config sets `JetBrains Mono` as the font.
 **Why:** You'd expect to `brew install` a nerd font first.
