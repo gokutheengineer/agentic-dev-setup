@@ -31,6 +31,22 @@ run `./setup.sh` on an Apple Silicon machine.
 
 - Hold the hotkey, speak your prompt, release — text appears at the cursor.
 - Drag-and-drop an audio file onto the app to transcribe a recording.
+- Fall back to **typing for URLs and file paths** — don't dictate those.
+
+## The custom-vocabulary trick (the video's "why is transcription so good?")
+
+In the **transcription / model menu** there's an **initial prompt** (a system prompt for
+the recognizer). Put your **common vocabulary** there — project names, tool names, jargon —
+and transcription accuracy on those terms jumps. Kun credits this for how well it
+recognizes names like "lavish-axi", "gh-axi", "treehouse", etc.
+
+Suggested starting vocabulary for this setup:
+
+```
+WezTerm, tmux, Neovim, Telescope, Claude Code, Codex, opencode, Pi, fnm,
+skills, skill-creator, AXI, gh-axi, chrome-devtools-axi, lavish, lavish-axi,
+no-mistakes, gnhf, treehouse, firstmate, worktree, OPINIONS.md, kunchenguid
+```
 
 ## Gotchas
 
