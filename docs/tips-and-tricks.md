@@ -7,6 +7,12 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
+### [wezterm] JetBrains Mono is bundled — no font install needed
+**What:** The config sets `JetBrains Mono` as the font.
+**Why:** You'd expect to `brew install` a nerd font first.
+**How:** WezTerm ships JetBrains Mono internally, so it Just Works. `Menlo` is the
+system fallback in the config if you ever change machines.
+
 ### [meta] Keep node current for npx-based agentic tools
 **What:** Some `npx` tools assume a recent Node LTS. The machine started on Node 18.
 **Why:** Newer CLIs (skills, etc.) may use modern syntax / fetch APIs.
