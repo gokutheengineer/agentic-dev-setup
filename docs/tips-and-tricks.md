@@ -58,6 +58,19 @@ with `tmux attach`. This is the single biggest reason tmux is in this stack.
 **How:** WezTerm ships JetBrains Mono internally, so it Just Works. `Menlo` is the
 system fallback in the config if you ever change machines.
 
+### [memory] Version your global memory in the repo, symlink it to agents
+**What:** `~/.claude/CLAUDE.md` + `~/.codex/AGENTS.md` are symlinks to
+`config/memory/global.md` in this repo.
+**Why:** One file for all agents AND it's in git — a new laptop gets your exact
+preferences by running `./setup.sh memory`.
+**How:** `link` backs up any existing target first; safe to re-run.
+
+### [memory] Keep global memory tiny; it taxes every single request
+**What:** Global memory loads into every session in every project.
+**Why:** Bloat silently burns tokens on requests that don't need it.
+**How:** Keep ~20-30 lines of durable prefs; push conditional how-tos into skills and
+project-specific knowledge into the project memory file.
+
 ### [meta] Keep node current for npx-based agentic tools
 **What:** Some `npx` tools assume a recent Node LTS. The machine started on Node 18.
 **Why:** Newer CLIs (skills, etc.) may use modern syntax / fetch APIs.

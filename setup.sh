@@ -14,8 +14,9 @@ export REPO_ROOT
 # shellcheck source=scripts/lib.sh
 source "$REPO_ROOT/scripts/lib.sh"
 
-# Install order matters (deps first). skills before axi/lavish (gateway).
-TOOLS=(wezterm tmux nvim skills opensuperwhisper axi lavish no-mistakes treehouse gnhf firstmate)
+# Install order follows the video's arc: ship -> crew onboarding -> tools.
+# Note: axi/lavish are PER-PROJECT skills (see docs), not machine-wide installs.
+TOOLS=(wezterm tmux nvim memory skills opensuperwhisper no-mistakes treehouse gnhf firstmate)
 
 usage() { sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; }
 
