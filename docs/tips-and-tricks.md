@@ -7,6 +7,17 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
+### [skills] AXI & lavish install *through* the skills CLI
+**What:** The agentic tools aren't standalone apps — they're agent skills.
+**Why:** `npx skills add kunchenguid/axi` etc. registers them with Claude Code & co.
+**How:** Install skills CLI first; everything else is `skills add <owner>/<repo>`.
+
+### [meta] One shell entrypoint, idempotently sourced from .zshrc
+**What:** All aliases/PATH live in `config/shell/agentic.zsh`, linked to
+`~/.config/agentic-dev-setup.zsh`; `.zshrc` gets ONE managed `source` line.
+**Why:** Re-running setup never duplicates lines in `.zshrc`; one file to edit.
+**How:** `ensure_line` greps before appending; `ensure_shell_sourced` ties it together.
+
 ### [nvim] Keep the base config plugin-free to avoid distro conflicts
 **What:** Our `init.lua` has zero plugins/plugin-manager.
 **Why:** Dropping in LazyVim/kickstart later won't fight a half-configured base.

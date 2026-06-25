@@ -59,5 +59,24 @@ link() {
   ok "linked: $dest -> $src"
 }
 
+# ensure_line <line> <file>  — append line only if not already present
+ensure_line() {
+  local line="$1" file="$2"
+  mkdir -p "$(dirname "$file")"
+  touch "$file"
+  if grep -qsF -- "$line" "$file"; then
+    ok "already in $(basename "$file"): ${line:0:48}…"
+  else
+    printf '\n%s\n' "$line" >> "$file"
+    ok "added to $(basename "$file"): ${line:0:48}…"
+  fi
+}
+
+# ensure_shell_sourced — make ~/.zshrc source our single agentic shell entrypoint
+ensure_shell_sourced() {
+  link "$REPO_ROOT/config/shell/agentic.zsh" "$HOME/.config/agentic-dev-setup.zsh"
+  ensure_line '[ -f ~/.config/agentic-dev-setup.zsh ] && source ~/.config/agentic-dev-setup.zsh' "$HOME/.zshrc"
+}
+
 # REPO_ROOT is exported by setup.sh
 : "${REPO_ROOT:?lib.sh must be sourced from setup.sh}"
