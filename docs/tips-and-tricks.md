@@ -24,10 +24,16 @@ error. The guard makes `./setup.sh` succeed everywhere and self-heal on a new la
 **Why:** Re-running setup never duplicates lines in `.zshrc`; one file to edit.
 **How:** `ensure_line` greps before appending; `ensure_shell_sourced` ties it together.
 
-### [nvim] Keep the base config plugin-free to avoid distro conflicts
-**What:** Our `init.lua` has zero plugins/plugin-manager.
-**Why:** Dropping in LazyVim/kickstart later won't fight a half-configured base.
-**How:** Good defaults only; bootstrap `lazy.nvim` *when* you actually want plugins.
+### [nvim] Pin nvim-treesitter to `master` (the `main` branch broke the API)
+**What:** `require("nvim-treesitter.configs").setup{}` errors on a fresh install.
+**Why:** lazy pulls treesitter's default branch, now `main`, which removed `.configs`.
+**How:** add `branch = "master"` to the plugin spec. Verified: `module
+'nvim-treesitter.configs' not found` → gone after pinning.
+
+### [nvim] rose-pine sets `colors_name = "rose-pine"` regardless of variant
+**What:** After `colorscheme rose-pine-moon`, `vim.g.colors_name` reads `rose-pine`.
+**Why:** The plugin reports the family, not the variant — not a bug.
+**How:** Set the variant in `require("rose-pine").setup{ variant = "moon" }`.
 
 ### [nvim] `vim.highlight` → `vim.hl` on 0.12+
 **What:** `vim.highlight.on_yank()` is deprecated on Neovim 0.12.

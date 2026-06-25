@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- ── Appearance ──────────────────────────────────────────────
-config.color_scheme = "Catppuccin Mocha"           -- ships with WezTerm
+config.color_scheme = "rose-pine-moon"             -- Kun's scheme; ships with WezTerm
 config.font = wezterm.font_with_fallback({ "JetBrains Mono", "Menlo" })
 config.font_size = 14.0
 config.line_height = 1.05

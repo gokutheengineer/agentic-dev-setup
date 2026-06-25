@@ -1,43 +1,46 @@
 # Neovim
 
-**What it is:** A modal editor. In this agentic workflow you pop into it for quick
-edits and reviews; agents do most of the heavy editing in adjacent panes.
+**What it is:** A modal editor (modern vim). In Kun's workflow it keeps your hands on
+the keyboard; you pop in for quick edits/reviews while agents do the heavy editing.
 
 ## Install
 
 ```bash
-./setup.sh nvim           # neovim + ripgrep + fd
+./setup.sh nvim           # neovim + ripgrep + fd, then bootstraps plugins
 ```
 
-Symlinks our config to `~/.config/nvim/init.lua`.
+Symlinks our config to `~/.config/nvim/init.lua` and runs `:Lazy sync` once.
 
-## Config — deliberately minimal
+## Config — replicates the video's capabilities
 
 - Source of truth: [`config/nvim/init.lua`](../../config/nvim/init.lua)
-- **No plugin manager.** Just great defaults so it never conflicts with a distro
-  (LazyVim / kickstart.nvim) you might layer on later.
-- Leader = **Space**. Truecolor on (pairs with tmux RGB passthrough). System
-  clipboard, persistent undo, relative numbers, smartcase search.
+- **Plugin manager:** [lazy.nvim](https://github.com/folke/lazy.nvim) (auto-bootstraps).
+- **Theme:** rose-pine (moon) — matches the WezTerm scheme.
+- **Telescope** for the `Space-f` / `Space-s` fuzzy workflow Kun shows.
+- Relative line numbers (the "`11k` to jump 11 lines up" trick), system clipboard,
+  persistent undo, smartcase search.
 
 ### Key maps
 
 | Keys | Action |
 |------|--------|
-| `<Space>w` / `<Space>q` | save / quit |
-| `<Esc>` | clear search highlight |
+| `Space f` | **Find files** by name (Telescope) |
+| `Space s` | **Search / live grep** the project (Telescope) |
+| `Space b` | Open buffers |
+| `Space w` / `Space q` | save / quit |
+| `Esc` | clear search highlight |
 | `Ctrl-h/j/k/l` | move between splits (matches tmux) |
 | `J` / `K` (visual) | move selected lines down/up |
+| `11k` / `5j` | jump N lines using relative numbers |
 
-## Layering on a distro later
-
-The base config is intentionally conflict-free. To go full IDE later, either:
-- bootstrap `lazy.nvim` inside `init.lua`, or
-- install **kickstart.nvim** / **LazyVim** into `~/.config/nvim` (back up our symlink first).
+> **Quitting vim:** `:q` (or `Space q`). `:q!` to discard changes. `:wq` to save+quit.
 
 ## Gotchas
 
-- **`vim.highlight` is deprecated on nvim 0.12+** → renamed to `vim.hl`. Our config
-  uses `(vim.hl or vim.highlight)` so it works on both old and new versions.
-- **Colors washed out inside tmux?** Need `termguicolors` (set here) *and* tmux's
-  `:RGB` override (set in our tmux.conf). Both must be present.
-- Validate a config change headlessly: `nvim --headless -u init.lua +qa`.
+- **Treesitter is pinned to `master`.** Its new `main` branch dropped the
+  `nvim-treesitter.configs` API our config uses — pinning avoids a load error.
+  Add parsers on demand: `:TSInstall lua python …`.
+- **`vim.highlight` → `vim.hl`** on nvim 0.12+; config uses `(vim.hl or vim.highlight)`.
+- **Colors washed out inside tmux?** Need `termguicolors` (set) + tmux `:RGB` override
+  (set in our tmux.conf).
+- Validate headlessly after edits: `nvim --headless "+Lazy! sync" +qa`.

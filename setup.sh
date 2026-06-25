@@ -14,8 +14,8 @@ export REPO_ROOT
 # shellcheck source=scripts/lib.sh
 source "$REPO_ROOT/scripts/lib.sh"
 
-# Install order matters (deps first).
-TOOLS=(wezterm tmux nvim skills opensuperwhisper axi kunchenguid)
+# Install order matters (deps first). skills before axi/lavish (gateway).
+TOOLS=(wezterm tmux nvim skills opensuperwhisper axi lavish no-mistakes treehouse gnhf firstmate)
 
 usage() { sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; }
 
@@ -30,11 +30,12 @@ ensure_homebrew() {
 
 run_tool() {
   local t="$1" script="$REPO_ROOT/scripts/${1}.sh"
+  local fn="install_${t//-/_}"   # hyphens aren't legal in bash fn names
   if [ ! -f "$script" ]; then warn "no installer for '$t' yet (scripts/${t}.sh missing) — skipping"; return; fi
   step "$t"
   # shellcheck disable=SC1090
   source "$script"
-  "install_${t}"
+  "$fn"
 }
 
 main() {
