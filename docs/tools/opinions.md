@@ -27,7 +27,7 @@ over everything above it.
   **live** into `~/.claude/skills/opinions` and `~/.agents/skills/opinions`.
 
 ```bash
-./setup.sh opinions      # links the skill (live symlink) into agent skill dirs
+./setup.sh local-skills  # links all repo skills (incl. opinions) into agent skill dirs
 ```
 
 This honors both how the file is *deployed* (in agent memory) and the

@@ -17,7 +17,7 @@ source "$REPO_ROOT/scripts/lib.sh"
 # Install order follows the video's arc: ship -> crew onboarding -> tools.
 # axi/lavish install their guidance skills globally; their executable (PromptScript)
 # parts run per-project / on demand via npx (see docs/tools/{axi,lavish}.md).
-TOOLS=(wezterm tmux nvim memory skills opinions pi axi lavish opensuperwhisper no-mistakes treehouse gnhf firstmate)
+TOOLS=(wezterm tmux nvim memory skills local-skills pi axi lavish voice no-mistakes treehouse gnhf firstmate)
 
 usage() { sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; }
 

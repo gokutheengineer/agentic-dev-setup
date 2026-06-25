@@ -16,7 +16,7 @@ code to directing a crew — and eventually to deciding *where to sail*.
 │    Skills: skill-creator + progressive disclosure              │
 │                                                                │
 │ 3. A SINGLE CREWMATE                                           │
-│    Voice (OpenSuperWhisper) → plan (lavish) → build →          │
+│    Voice (OpenSuperWhisper/VoiceInk) → plan (lavish) → build → │
 │    validate (no-mistakes → PR).  Tools matter: AXI ergonomics. │
 │                                                                │
 │ 4. MANY CREWMATES                                              │

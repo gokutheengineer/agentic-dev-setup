@@ -61,6 +61,21 @@ skills list -g                                             # verify
   `PromptScript does not support global skill installation` for that part — expected,
   not a failure of the doc skill.
 
+## This repo's own skills (`config/skills/`)
+
+Beyond the upstream skills installed via the CLI (axi, lavish, no-mistakes, skill-creator),
+this repo **ships its own** `SKILL.md` per tool that lacks an upstream one — `nix-setup`,
+`tmux`, `treehouse`, `gnhf`, `firstmate`, `memory`, `skills-cli`, `pi`, `wezterm`, `nvim`,
+and `opinions`. They're version-controlled here and installed as **live symlinks** into
+the agent skill dirs by:
+
+```bash
+./setup.sh local-skills
+```
+
+Edit any `config/skills/<name>/SKILL.md` and every agent sees it immediately (no reinstall).
+To author a new one, use the **skill-creator** skill or `skills init`.
+
 ## ⚠️ Security: don't install random skills (Kun's warning)
 
 Skills run **with full agent permissions** — they can instruct your agent to run

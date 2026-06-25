@@ -7,11 +7,11 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
-### [opensuperwhisper] Arch-guard installers instead of failing
-**What:** `scripts/opensuperwhisper.sh` checks `uname -m` and only installs on arm64.
-**Why:** OpenSuperWhisper is Apple-Silicon-only; on this Intel Mac a hard install would
-error. The guard makes `./setup.sh` succeed everywhere and self-heal on a new laptop.
-**How:** `[ "$(uname -m)" != "arm64" ] && return 0` early-out with a clear message.
+### [voice] Pick the dictation app by arch instead of failing
+**What:** `scripts/voice.sh` checks `uname -m`: OpenSuperWhisper on arm64, VoiceInk on Intel.
+**Why:** OpenSuperWhisper is Apple-Silicon-only, so on Intel it would fail to install;
+VoiceInk is the open-source, local, Intel-compatible alternative.
+**How:** branch on `uname -m`; both `nix/hosts/{intel,apple}.nix` mirror this via casks.
 
 ### [skills] Popular ≠ good; skills run with full agent permissions
 **What:** Kun's hard rule: don't install internet skills without rigorous evidence.
