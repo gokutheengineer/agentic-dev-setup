@@ -53,6 +53,19 @@ project that needs them.
 **Why:** Throws a deprecation warning; will eventually break.
 **How:** Use `(vim.hl or vim.highlight).on_yank()` to support both old and new nvim.
 
+### [no-mistakes] Pin link dir to ~/.local/bin to skip the sudo prompt
+**What:** The official installer symlinks into /usr/local/bin (needs sudo) unless
+~/.local/bin is already on PATH.
+**Why:** The setup shell may not have ~/.local/bin on PATH yet, triggering sudo.
+**How:** Run it as `... | NO_MISTAKES_LINK_DIR="$HOME/.local/bin" sh` — no sudo, and
+our agentic.zsh already puts ~/.local/bin on PATH.
+
+### [meta] Review curl|sh installers before piping them
+**What:** no-mistakes & treehouse install via `curl … | sh`.
+**Why:** Piping a remote script to a shell runs whatever it contains.
+**How:** `curl -fsSL <url> -o x.sh` → read it → then run. (Both checked out clean:
+standard release-binary download + symlink, no funny business.)
+
 ### [tmux] Run agents inside tmux so they survive disconnects
 **What:** Start long agent runs in a tmux session, then `prefix d` to detach.
 **Why:** Closing the terminal (or losing SSH) won't kill the agent — reattach later
