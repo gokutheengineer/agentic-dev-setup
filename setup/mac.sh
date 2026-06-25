@@ -21,11 +21,12 @@ read -r ans; [ "$ans" = "y" ] || { echo "Aborted."; exit 1; }
 # 0. Xcode CLT (git, cc) — needed before anything.
 xcode-select -p >/dev/null 2>&1 || xcode-select --install || true
 
-# 1. Install Nix (Determinate Systems installer — reliable on macOS, flakes on by default).
+# 1. Install Nix (official multi-user installer; works on Intel + Apple Silicon).
+#    NOTE: Determinate's installers dropped Intel/x86_64-darwin support, so we use the
+#    upstream installer. It prompts for your password (sudo) — run in a real terminal.
 if ! command -v nix >/dev/null 2>&1; then
-  echo "==> Installing Nix (Determinate Systems)..."
-  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
-    | sh -s -- install
+  echo "==> Installing Nix (official multi-user installer)..."
+  sh <(curl -L https://nixos.org/nix/install) --daemon
   # load nix into this shell
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh 2>/dev/null || true
 fi

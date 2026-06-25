@@ -4,11 +4,11 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  # We use Determinate Systems' Nix installer (recommended on macOS); it manages the
-  # daemon and enables flakes itself. So let it own Nix rather than nix-darwin.
-  #   -> If you used the OFFICIAL nix installer instead, set: nix.enable = true; and add
-  #      nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.enable = false;
+  # Installed via the OFFICIAL Nix installer (Determinate dropped Intel/x86_64-darwin
+  # support — both their curl installer and .pkg reject Intel Macs). nix-darwin manages
+  # Nix and turns on flakes.
+  nix.enable = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # The primary user (needed for user-scoped defaults + Homebrew).
   system.primaryUser = username;

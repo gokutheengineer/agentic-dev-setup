@@ -83,9 +83,10 @@ Then re-run `darwin-rebuild switch`.
 - **`cleanup = "none"`** (in `darwin.nix`): leaves Homebrew casks not listed here alone —
   **safe for the current Mac**. Switch to `"zap"` only when you want full reproducibility
   (it will uninstall any cask not in the config).
-- **Nix vs official installer:** `nix.enable = false` assumes the **Determinate Systems**
-  installer (it manages the daemon + flakes). If you use the official installer, set
-  `nix.enable = true` and add the experimental-features line (commented in `darwin.nix`).
+- **Installer:** uses the **official** Nix installer
+  (`sh <(curl -L https://nixos.org/nix/install) --daemon`). Determinate's installers
+  dropped Intel/`x86_64-darwin` support (both the curl installer and the `.pkg` reject
+  Intel Macs), so `nix.enable = true` + flakes are set in `darwin.nix`.
 - **home-manager owns `~/.zshrc`** on a Nix machine; it sources our agentic entrypoint via
   `initExtra`. The bash layer detects this and won't fight it.
 - **Don't `switch` the current Mac** until we've validated and you're ready — it would
