@@ -7,6 +7,16 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
+### [nvim] Keep the base config plugin-free to avoid distro conflicts
+**What:** Our `init.lua` has zero plugins/plugin-manager.
+**Why:** Dropping in LazyVim/kickstart later won't fight a half-configured base.
+**How:** Good defaults only; bootstrap `lazy.nvim` *when* you actually want plugins.
+
+### [nvim] `vim.highlight` → `vim.hl` on 0.12+
+**What:** `vim.highlight.on_yank()` is deprecated on Neovim 0.12.
+**Why:** Throws a deprecation warning; will eventually break.
+**How:** Use `(vim.hl or vim.highlight).on_yank()` to support both old and new nvim.
+
 ### [tmux] Run agents inside tmux so they survive disconnects
 **What:** Start long agent runs in a tmux session, then `prefix d` to detach.
 **Why:** Closing the terminal (or losing SSH) won't kill the agent — reattach later
