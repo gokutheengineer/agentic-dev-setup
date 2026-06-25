@@ -25,9 +25,9 @@
   # Global git identity (the GitHub-linked, verified identity).
   programs.git = {
     enable = true;
-    userName = "Gökhan Sağırlar";
-    userEmail = "118421317+gokutheengineer@users.noreply.github.com";
-    extraConfig = {
+    settings = {
+      user.name = "Gökhan Sağırlar";
+      user.email = "118421317+gokutheengineer@users.noreply.github.com";
       init.defaultBranch = "main";
       pull.ff = "only";
       push.autoSetupRemote = true;
@@ -47,8 +47,7 @@
     };
     # home-manager OWNS ~/.zshrc, so source our agentic shell entrypoint from here
     # (the bash layer detects this and won't also append to ~/.zshrc).
-    # NOTE: on newer home-manager this key is `initContent` instead of `initExtra`.
-    initExtra = ''
+    initContent = ''
       [ -f ~/.config/agentic-dev-setup.zsh ] && source ~/.config/agentic-dev-setup.zsh
     '';
   };
