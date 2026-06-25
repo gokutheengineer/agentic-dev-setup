@@ -53,6 +53,7 @@ The mental model is a **captain sailing a ship with a crew of agents**:
 | 2 Crew | [Agent harnesses](docs/tools/agents.md) | Claude Code / Codex / opencode / Pi (agent-agnostic) | ✅ |
 | 2 Crew | [Memory files](docs/tools/memory.md) | Global + project memory, `CLAUDE.md`↔`AGENTS.md` symlink | ✅ |
 | 2 Crew | [skills CLI](docs/tools/skills.md) | `npx skills` + skill-creator; progressive disclosure | ✅ |
+| 2 Crew | [OPINIONS.md](docs/tools/opinions.md) | My software taste (mirrors Kun); always-on + skill | ✅ |
 | 3 Single | [OpenSuperWhisper](docs/tools/opensuperwhisper.md) | Local voice dictation | ✅ scripted (arm64 only) |
 | 3 Single | [AXI](docs/tools/axi.md) | Agent-ergonomic CLI design standards | ✅ |
 | 3 Single | [lavish](docs/tools/lavish.md) | Interactive HTML-artifact planning | ✅ |
