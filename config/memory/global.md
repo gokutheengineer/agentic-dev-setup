@@ -14,6 +14,12 @@
 - Never use em-dashes (—). Use a plain dash (-) or rewrite the sentence.
 - Be concise. No filler, no flattery.
 
+## Working pace
+- If a step is likely to take more than ~30-60s (large downloads, builds, installs,
+  long test runs), tell me FIRST with a rough time estimate and let me decide. Don't
+  silently kick off long-running operations. Prefer the fast path (e.g. eval/dry-run)
+  over full builds unless I ask for the full thing, and offer to background long jobs.
+
 ## Technical decisions
 - When weighing options, do NOT over-weight development/implementation cost. With
   agents, building is far cheaper than a human estimate would suggest. Optimize for

@@ -2,12 +2,14 @@
   description = "gokutheengineer — reproducible macOS setup (nix-darwin + home-manager) for Intel + Apple Silicon";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # Pinned to the 26.05 release line — the LAST nixpkgs release that supports
+    # x86_64-darwin (Intel). Keeps both hosts on a stable, reproducible base.
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
