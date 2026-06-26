@@ -18,10 +18,10 @@ proposed fix). That pasted text is the complete source of truth.
 - Do every step **inside your own worktree**.
 - Follow `.claude/rules/` (testing, go-conventions, architecture, service-interfaces,
   git-workflow).
-- **Test/lint scope here OVERRIDES `AGENTS.md`.** For issue triage the user wants ONLY the
-  affected packages tested + `make lint` (Steps 6-7). Do NOT run the full-suite verification
-  block from `AGENTS.md` (`go test ./...`, staticcheck, govulncheck, gosec) — it's too slow
-  for this flow.
+- **Test scope here OVERRIDES `AGENTS.md`.** Run ONLY the affected packages' tests (Step 6).
+  **Never run lint** (`make lint` / `golangci-lint`) — it takes ages and never finishes here.
+  Do NOT run `AGENTS.md`'s full-suite verification either (`go test ./...`, staticcheck,
+  govulncheck, gosec). Affected-package tests are the only checks you run.
 
 ## Step 1 — Own worktree + branch
 
@@ -71,17 +71,9 @@ SETTINGS_CONTEXT=test go test -race -tags "testtxmetacache" -count=1 ./path/to/a
 ```
 
 Do **not** run the full suite (`make test`/`testall`). Repeat per affected package.
+**Do not run lint** — skip it entirely.
 
-## Step 7 — Lint must pass
-
-```bash
-make lint        # golangci-lint, new issues vs origin/main
-```
-
-Fix until clean. (`make lint-full-changed-dirs` for a full check of changed dirs.) Lint must
-pass before finishing.
-
-## Step 8 — Commit (user's name only, tiny message)
+## Step 7 — Commit (user's name only, tiny message)
 
 Commit with the repo's configured git identity (the user's name) and **never** add an AI /
 Claude co-author trailer. Message: one sentence, **max 6-7 words**, imperative.
@@ -98,7 +90,7 @@ Do not push or open the PR automatically — the user does that.
 - Never `git reset --hard` (use `git stash`). Never auto-resolve merge/rebase conflicts —
   stop, show the files, ask the user.
 
-## Step 9 — Output the PR (LAST thing in your answer)
+## Step 8 — Output the PR (LAST thing in your answer)
 
 End your reply with a ready-to-paste PR, in markdown:
 
@@ -116,5 +108,5 @@ End your reply with a ready-to-paste PR, in markdown:
 <what changed and why; note any place you improved on the proposed fix>
 
 ### Tests
-<tests added + the exact scoped `go test ...` commands run, and that lint passed>
+<tests added + the exact scoped `go test ...` commands run (affected packages only)>
 ```
