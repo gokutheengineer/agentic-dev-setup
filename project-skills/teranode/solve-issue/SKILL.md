@@ -18,6 +18,10 @@ proposed fix). That pasted text is the complete source of truth.
 - Do every step **inside your own worktree**.
 - Follow `.claude/rules/` (testing, go-conventions, architecture, service-interfaces,
   git-workflow).
+- **Test/lint scope here OVERRIDES `AGENTS.md`.** For issue triage the user wants ONLY the
+  affected packages tested + `make lint` (Steps 6-7). Do NOT run the full-suite verification
+  block from `AGENTS.md` (`go test ./...`, staticcheck, govulncheck, gosec) — it's too slow
+  for this flow.
 
 ## Step 1 — Own worktree + branch
 
