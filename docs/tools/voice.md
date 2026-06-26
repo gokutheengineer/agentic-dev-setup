@@ -6,20 +6,24 @@ roughly 3× faster (the Stanford study Kun cites). Transcription runs on-device.
 | Mac | App | Notes |
 |-----|-----|-------|
 | **Apple Silicon** | [OpenSuperWhisper](https://github.com/starmel/OpenSuperWhisper) | Kun's choice; free, open-source, local Whisper. arm64-only. |
-| **Intel (x86_64)** | *(none configured)* | OpenSuperWhisper doesn't run on Intel. Use macOS **built-in Dictation** as a fallback. |
+| **Intel (x86_64)** | **MacWhisper** + **OpenWhispr** (trial) | Two Intel-compatible apps installed side by side to compare. Pick one later. |
 
-> VoiceInk was tried as an Intel alternative and **dropped** — it didn't work reliably.
-> If you want, we can evaluate another option (e.g. MacWhisper, OpenWhispr), but nothing
-> is installed on Intel by default.
+> VoiceInk was tried first and **dropped** (didn't work). Now trialing
+> [MacWhisper](https://goodsnooze.com/macwhisper/) (freemium; Homebrew cask) and
+> [OpenWhispr](https://openwhispr.com) (open-source; GitHub `.dmg`). After testing, keep
+> the winner and remove the other from `scripts/voice.sh` + `nix/hosts/intel.nix`.
 
 ## Install
 
 ```bash
-./setup.sh voice      # installs OpenSuperWhisper on Apple Silicon; on Intel, prints the fallback
+./setup.sh voice      # Apple Silicon: OpenSuperWhisper. Intel: MacWhisper + OpenWhispr.
 ```
 
-On Nix machines, the Apple Silicon host installs the `opensuperwhisper` cask
-(`nix/hosts/apple.nix`); the Intel host configures no dictation app.
+- **MacWhisper** → Homebrew cask `macwhisper` (also declared in `nix/hosts/intel.nix`).
+- **OpenWhispr** → has no cask; `voice.sh` downloads the latest x64 `.dmg` from its GitHub
+  release and copies the app to `/Applications`. First launch may need right-click → Open
+  (Gatekeeper). Not declared in Nix (no cask) — the bash `voice` step handles it.
+- On Apple Silicon, `nix/hosts/apple.nix` installs the `opensuperwhisper` cask.
 
 ## Intel fallback: macOS built-in Dictation (zero install)
 

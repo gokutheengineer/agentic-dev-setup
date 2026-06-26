@@ -82,7 +82,7 @@ The mental model is a **captain sailing a ship with a crew of agents**:
 | 2 Crew | [Memory files](docs/tools/memory.md) | Global + project memory, `CLAUDE.md`↔`AGENTS.md` symlink |
 | 2 Crew | [skills CLI](docs/tools/skills.md) | `npx skills` + skill-creator; progressive disclosure |
 | 2 Crew | [OPINIONS.md](docs/tools/opinions.md) | Durable opinions fed to agents so they match your taste |
-| 3 Single | [Voice input](docs/tools/voice.md) | Local dictation — OpenSuperWhisper (Apple Silicon); built-in Dictation on Intel |
+| 3 Single | [Voice input](docs/tools/voice.md) | Local dictation — OpenSuperWhisper (Apple Silicon); MacWhisper + OpenWhispr trial (Intel) |
 | 3 Single | [AXI](docs/tools/axi.md) | Agent-ergonomic CLI design standards |
 | 3 Single | [lavish](docs/tools/lavish.md) | Interactive HTML-artifact planning |
 | 3 Single | [no-mistakes](docs/tools/no-mistakes.md) | Validate first-pass code → clean PR |
