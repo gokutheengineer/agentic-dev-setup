@@ -7,11 +7,12 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
-### [voice] Pick the dictation app by arch instead of failing
-**What:** `scripts/voice.sh` checks `uname -m`: OpenSuperWhisper on arm64, VoiceInk on Intel.
-**Why:** OpenSuperWhisper is Apple-Silicon-only, so on Intel it would fail to install;
-VoiceInk is the open-source, local, Intel-compatible alternative.
-**How:** branch on `uname -m`; both `nix/hosts/{intel,apple}.nix` mirror this via casks.
+### [voice] OpenSuperWhisper is arm64-only; no Intel app sticks yet
+**What:** `scripts/voice.sh` installs OpenSuperWhisper on Apple Silicon; on Intel it
+installs nothing and points at macOS built-in Dictation.
+**Why:** OpenSuperWhisper can't run on Intel, and VoiceInk (tried as an Intel alternative)
+didn't work reliably, so it was removed from the laptop and the setup.
+**How:** branch on `uname -m`; `nix/hosts/apple.nix` has the opensuperwhisper cask, Intel none.
 
 ### [skills] Popular ≠ good; skills run with full agent permissions
 **What:** Kun's hard rule: don't install internet skills without rigorous evidence.

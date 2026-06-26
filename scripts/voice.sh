@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Voice input — local dictation so you can speak prompts instead of typing.
-# Arch-dependent because OpenSuperWhisper is Apple-Silicon-only:
-#   Apple Silicon -> OpenSuperWhisper (Kun's choice)
-#   Intel (x86_64) -> VoiceInk (open-source, local Whisper, Intel-compatible)
+# OpenSuperWhisper is Apple-Silicon-only. No Intel dictation app is configured here
+# (VoiceInk was tried and dropped — didn't work well), so on Intel we point at macOS's
+# built-in Dictation as a zero-install fallback.
 
 install_voice() {
   if [ "$(uname -m)" = "arm64" ]; then
@@ -11,10 +11,7 @@ install_voice() {
       ok "OpenSuperWhisper installed. Grant Microphone + Accessibility, set a hotkey, pick a model."
     fi
   else
-    info "OpenSuperWhisper is Apple-Silicon-only; installing VoiceInk (Intel-compatible)..."
-    cask_install voiceink
-    if have_app "VoiceInk"; then
-      ok "VoiceInk installed. Grant Microphone + Accessibility, download a model, set a hotkey."
-    fi
+    warn "OpenSuperWhisper is Apple-Silicon-only; no Intel dictation app is configured."
+    info "Fallback on Intel: macOS built-in Dictation (System Settings > Keyboard > Dictation; press Fn twice to start)."
   fi
 }

@@ -2,11 +2,8 @@
 # x86_64-darwin. Homebrew lives in /usr/local (nix-darwin detects this automatically).
 { ... }:
 {
-  # Intel-compatible apps. OpenSuperWhisper is arm64-only, so on Intel we use VoiceInk
-  # (open-source local dictation) instead. Merges with the shared casks in darwin.nix.
-  homebrew.casks = [
-    "voiceink"   # voice dictation — Intel-compatible alternative to OpenSuperWhisper
-  ];
+  # No Intel-only apps configured. OpenSuperWhisper is arm64-only; VoiceInk was tried as
+  # an Intel alternative and dropped (didn't work). On Intel, use macOS built-in Dictation.
 
   # Optional: name the machine (uncomment to set).
   # networking.computerName = "gokhan-intel-i9";
