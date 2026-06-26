@@ -2,10 +2,8 @@
 # Homebrew lives in /opt/homebrew (nix-darwin detects this automatically).
 { ... }:
 {
-  # Apple-Silicon-only apps. This list MERGES with the shared casks in modules/darwin.nix.
-  homebrew.casks = [
-    "opensuperwhisper"   # local voice dictation — arm64 only
-  ];
+  # No Apple-Silicon-only apps configured. (Voice dictation is deferred — to be
+  # decided later; OpenSuperWhisper would go here as a cask when revisited.)
 
   # Optional: name the machine (uncomment to set).
   # networking.computerName = "gokhan-mac";

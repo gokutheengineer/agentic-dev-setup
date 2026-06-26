@@ -25,8 +25,8 @@ base-tool steps skip anything Nix already provides).
 | `#intel` | current Intel i9 Mac (later: teammate) | `x86_64-darwin` |
 | `#apple` | new Apple Silicon laptop | `aarch64-darwin` |
 
-Shared config lives in `modules/`; per-arch differences in `hosts/` (e.g.
-OpenSuperWhisper is Apple-Silicon-only, so it's only in `hosts/apple.nix`).
+Shared config lives in `modules/`; per-arch differences go in `hosts/` (e.g. an
+Apple-Silicon-only cask would live only in `hosts/apple.nix`).
 
 ## File map
 
@@ -38,7 +38,7 @@ nix/
 │   └── home.nix         shared USER config: packages, git, zsh, starship
 └── hosts/
     ├── intel.nix        x86_64-darwin specifics
-    └── apple.nix        aarch64-darwin specifics (adds opensuperwhisper cask)
+    └── apple.nix        aarch64-darwin specifics
 ../setup/mac.sh          fresh-Mac bootstrap (installs Nix, switches, runs agentic layer)
 ```
 

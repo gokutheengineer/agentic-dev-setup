@@ -7,13 +7,11 @@ isn't in any single tool's README. Newest at the top.
 
 ---
 
-### [voice] Intel dictation is a trial (MacWhisper vs OpenWhispr)
-**What:** `voice.sh` installs OpenSuperWhisper on Apple Silicon; on Intel it installs
-MacWhisper (cask) + OpenWhispr (GitHub x64 dmg) to compare.
-**Why:** OpenSuperWhisper is arm64-only; VoiceInk was tried and removed (didn't work).
-**How:** branch on `uname -m`. OpenWhispr has no cask, so `voice.sh` pulls the x64 `.dmg`
-via `gh release` and copies the app; MacWhisper is a cask (also in `nix/hosts/intel.nix`).
-Pick a winner later and drop the other.
+### [voice] Voice input deferred (tried VoiceInk, MacWhisper, OpenWhispr — all removed)
+**What:** No dictation app is installed or configured right now.
+**Why:** On Intel, VoiceInk didn't work; MacWhisper/OpenWhispr were too heavy/slow/paid.
+OpenSuperWhisper (Kun's free pick) is Apple-Silicon-only. Revisit later.
+**How:** the `voice` setup step was removed; macOS built-in Dictation is the stopgap.
 
 ### [skills] Popular ≠ good; skills run with full agent permissions
 **What:** Kun's hard rule: don't install internet skills without rigorous evidence.
